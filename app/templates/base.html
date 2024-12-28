@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% if title %}
+  <title>{{ title }} - Синица</title>
+  {% else %}
+  <title>Добро пожаловать на сайт студии Синица!</title>
+  {% endif %}
+</head>
+<body>
+  <div>Синица: <a href="/index">Главная</a></div>
+  <hr>
+  {% block content %}{% endblock %}
+</body>
+</html>
