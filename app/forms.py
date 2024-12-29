@@ -25,19 +25,19 @@ class RegistrationForm(FlaskForm):
         user = db.session.scalar(sa.select(User).where(
             User.username == username.data))
         if user is not None:
-            raise ValidationError('Please use a different username.')
+            raise ValidationError('Please use a different username. Пожалуйста, используйте другое имя пользователя.')
 
     def validate_email(self, email):
         user = db.session.scalar(sa.select(User).where(
             User.email == email.data))
         if user is not None:
-            raise ValidationError('Please use a different email address.')
+            raise ValidationError('Please use a different email address. Пожалуйста, используйте другой адрес электронной почты.')
 
 
 class EditProfileForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
-    submit = SubmitField('Submit')
+    username = StringField('Имя пользователя', validators=[DataRequired()])
+    about_me = TextAreaField('Обо мне', validators=[Length(min=0, max=140)])
+    submit = SubmitField('Отправить')
 
     def __init__(self, original_username, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -52,4 +52,10 @@ class EditProfileForm(FlaskForm):
 
 
 class EmptyForm(FlaskForm):
+    submit = SubmitField('Submit')
+
+
+class PostForm(FlaskForm):
+    post = TextAreaField('Напиши что-нибудь', validators=[
+        DataRequired(), Length(min=1, max=140)])
     submit = SubmitField('Submit')

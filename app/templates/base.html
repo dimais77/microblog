@@ -11,6 +11,7 @@
   <div>
     Синица:
     <a href="{{ url_for('index') }}">Главная</a>
+    <a href="{{ url_for('explore') }}">Лента</a>
     {% if current_user.is_anonymus %}
     <a href="{{ url_for('login') }}">Авторизация</a>
     {% else %}
